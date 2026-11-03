@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ARCHGEN - Project File Library</title>
+
+    <link
+        rel="stylesheet"
+        href="project-files.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         BACK BUTTON
+         ===================================================== -->
+
+    <button
+        type="button"
+        class="back-btn"
+        id="backToProject"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+        BACK TO PROJECT
+    </button>
+
+
+    <!-- =====================================================
+         TOP BAR
+         ===================================================== -->
+
+    <header class="topbar">
+
+        <div class="topbar-main">
+
+            <div class="eyebrow">
+                ARCHGEN
+            </div>
+
+            <h1>
+                PROJECT FILE LIBRARY
+            </h1>
+
+            <p>
+                Centralized project attachments, drawings,
+                site information, and working documents.
+            </p>
+
+        </div>
+
+
+        <div class="project-box">
+
+            <label for="projectId">
+                PROJECT ID
+            </label>
+
+            <input
+                type="text"
+                id="projectId"
+                autocomplete="off"
+                placeholder="Enter Project ID"
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         TOOLBAR
+         ===================================================== -->
+
+    <section class="toolbar">
+
+        <div class="toolbar-title">
+
+            <span>
+                Project Attachments
+            </span>
+
+            <strong id="fileCount">
+                0 files
+            </strong>
+
+        </div>
+
+
+        <div class="toolbar-actions">
+
+            <div class="upload-category">
+
+                <label for="documentCategory">
+                    DOCUMENT CATEGORY
+                </label>
+
+                <select id="documentCategory">
+
+                    <option value="schematic-design">
+                        Schematic Design
+                    </option>
+
+                    <option value="perspective">
+                        Perspective (Revit / SketchUp)
+                    </option>
+
+                    <option value="schematic-floorplan">
+                        Schematic Floorplan (AutoCAD / PDF)
+                    </option>
+
+                    <option value="construction-drawings">
+                        Construction Drawings
+                    </option>
+
+                    <option value="cad-working-drawings">
+                        CAD / Working Drawings
+                    </option>
+
+                    <option value="approved-drawings">
+                        Approved Drawings
+                    </option>
+
+                    <option value="as-built-plan">
+                        As-Built Plan
+                    </option>
+
+                    <option value="site-title-tax">
+                        Site Information - Title / Tax Declaration / Tax Receipt
+                    </option>
+
+                    <option value="site-photo">
+                        Site Information - Site Photo
+                    </option>
+
+                    <option value="site-measurements">
+                        Site Information - Site Measurements
+                    </option>
+
+                    <option value="others">
+                        Others
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <label
+                class="upload-btn"
+                id="addFilesButton"
+                for="fileInput"
+            >
+                <i class="fa-solid fa-upload"></i>
+                ADD FILES
+            </label>
+
+
+            <!-- =================================================
+                 FILE INPUT
+                 ================================================= -->
+
+            <input
+                type="file"
+                id="fileInput"
+                multiple
+                accept=".pdf,.jpg,.jpeg,.png,.webp,.gif,.doc,.docx,.ppt,.pptx,.rvt,.rfa,.skp,.dwg,.dxf"
+            >
+
+
+            <button
+                type="button"
+                id="clearAll"
+            >
+                <i class="fa-solid fa-trash"></i>
+                CLEAR PROJECT FILES
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         UPLOAD NOTICE
+         ===================================================== -->
+
+    <section
+        class="upload-notice"
+        id="uploadNotice"
+    >
+
+        <i
+            class="fa-solid fa-circle-info"
+            id="uploadNoticeIcon"
+        ></i>
+
+        <div>
+
+            <strong id="uploadNoticeTitle">
+                File Upload
+            </strong>
+
+            <p id="uploadNoticeText">
+                PDF and supported project files can be attached
+                to the selected document category.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CATEGORY FILTER
+         ===================================================== -->
+
+    <nav class="category-bar">
+
+        <button
+            type="button"
+            class="filter active"
+            data-filter="all"
+        >
+            ALL
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="schematic-design"
+        >
+            SCHEMATIC DESIGN
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="perspective"
+        >
+            PERSPECTIVE
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="schematic-floorplan"
+        >
+            SCHEMATIC FLOORPLAN
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="construction-drawings"
+        >
+            CONSTRUCTION DRAWINGS
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="cad-working-drawings"
+        >
+            CAD / WORKING DRAWINGS
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="approved-drawings"
+        >
+            APPROVED DRAWINGS
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="as-built-plan"
+        >
+            AS-BUILT PLAN
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="site-title-tax"
+        >
+            TITLE / TAX
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="site-photo"
+        >
+            SITE PHOTO
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="site-measurements"
+        >
+            SITE MEASUREMENTS
+        </button>
+
+        <button
+            type="button"
+            class="filter"
+            data-filter="others"
+        >
+            OTHERS
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         FILE GRID
+         ===================================================== -->
+
+    <main
+        id="fileGrid"
+        class="file-grid"
+    ></main>
+
+
+    <!-- =====================================================
+         EMPTY STATE
+         ===================================================== -->
+
+    <section
+        id="emptyState"
+        class="empty"
+    >
+
+        <i class="fa-regular fa-folder-open"></i>
+
+        <h2>
+            No Project Files
+        </h2>
+
+        <p>
+            Select a document category and click
+            <strong>ADD FILES</strong> to upload project documents.
+        </p>
+
+    </section>
+
+</div>
+
+
+<!-- =========================================================
+     VIEWER
+     ========================================================= -->
+
+<div
+    id="viewer"
+    class="viewer"
+    aria-hidden="true"
+>
+
+    <button
+        type="button"
+        id="viewerClose"
+        class="viewer-close"
+        aria-label="Close viewer"
+    >
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+
+    <div class="viewer-content">
+
+        <div class="viewer-head">
+
+            <div>
+
+                <span
+                    id="viewerCategory"
+                    class="viewer-category"
+                ></span>
+
+                <h2 id="viewerTitle">
+                    File Viewer
+                </h2>
+
+                <small id="viewerInfo"></small>
+
+            </div>
+
+
+            <div class="viewer-actions">
+
+                <button
+                    type="button"
+                    id="viewerPrev"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                    PREVIOUS
+                </button>
+
+                <button
+                    type="button"
+                    id="viewerNext"
+                >
+                    NEXT
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button
+                    type="button"
+                    id="viewerDownload"
+                >
+                    <i class="fa-solid fa-download"></i>
+                    DOWNLOAD
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="viewerStage"
+            class="viewer-stage"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<script src="project-files.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ARCHGEN - Architectural Receipt Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="receipt-container">
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <div class="header">
+
+        <div class="brand">
+
+            <img
+                src="486719213_1134051752065911_6607792430005557141_n.jpg"
+                alt="ARCHGEN Design + Construction"
+                class="logo"
+            >
+
+            <div class="brand-text">
+
+                <h1>ARCHITECTURAL SERVICES</h1>
+
+                <p>
+                    PROJECT RECEIPT / BILLING STATEMENT
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PROJECT INFORMATION
+         ===================================================== -->
+
+    <div class="project-info">
+
+        <div class="form-group">
+
+            <label for="receiptNo">
+                Receipt No.
+            </label>
+
+            <input
+                type="text"
+                id="receiptNo"
+                value="AR-0001"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="receiptDate">
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="receiptDate"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clientName">
+                Client Name
+            </label>
+
+            <input
+                type="text"
+                id="clientName"
+                placeholder="Enter client name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="clientTIN">
+                Client TIN
+            </label>
+
+            <input
+                type="text"
+                id="clientTIN"
+                placeholder="123-456-789-000"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="projectName">
+                Project Name
+            </label>
+
+            <input
+                type="text"
+                id="projectName"
+                placeholder="Enter project name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="location">
+                Project Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Enter project location"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="projectId">
+                Project ID
+            </label>
+
+            <input
+                type="text"
+                id="projectId"
+                placeholder="PRJ-001"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PROJECT PORTAL BUTTON
+         ===================================================== -->
+
+    <div class="project-portal-action">
+
+        <button
+            type="button"
+            class="btn portal-btn"
+            id="openProjectPortal"
+        >
+            <i class="fa-solid fa-building"></i>
+            Project Portal
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         SERVICES
+         ===================================================== -->
+
+    <h2>
+        Architectural Services / Materials
+    </h2>
+
+
+    <table id="receiptTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Description</th>
+
+                <th>Qty</th>
+
+                <th>Unit Price</th>
+
+                <th>Amount</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="receiptBody">
+
+            <tr>
+
+                <td>
+
+                    <input
+                        type="text"
+                        class="description"
+                        value="Architectural Design"
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+                        type="number"
+                        class="qty"
+                        value="1"
+                        min="0"
+                        step="1"
+                    >
+
+                </td>
+
+
+                <td>
+
+                    <input
+                        type="number"
+                        class="price"
+                        value="0"
+                        min="0"
+                        step="0.01"
+                    >
+
+                </td>
+
+
+                <td class="amount">
+                    ₱0.00
+                </td>
+
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="btn remove-btn"
+                    >
+                        Remove
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- =====================================================
+         ADD ITEM
+         ===================================================== -->
+
+    <button
+        type="button"
+        class="btn add-btn"
+        id="addItem"
+    >
+        + Add Item
+    </button>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <div class="summary">
+
+        <div class="summary-row">
+
+            <span>
+                Subtotal:
+            </span>
+
+            <strong id="subtotal">
+                ₱0.00
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Discount (%):
+            </span>
+
+            <input
+                type="number"
+                id="discount"
+                value="0"
+                min="0"
+                max="100"
+                step="0.01"
+            >
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Discount Amount:
+            </span>
+
+            <strong id="discountAmount">
+                ₱0.00
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                VAT (%):
+            </span>
+
+            <input
+                type="number"
+                id="vat"
+                value="12"
+                min="0"
+                max="100"
+                step="0.01"
+            >
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                VAT Amount:
+            </span>
+
+            <strong id="vatAmount">
+                ₱0.00
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row grand-total">
+
+            <span>
+                TOTAL:
+            </span>
+
+            <strong id="total">
+                ₱0.00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BUTTONS
+         ===================================================== -->
+
+    <div class="button-container">
+
+        <button
+            type="button"
+            class="btn calculate-btn"
+            id="calculate"
+        >
+            Calculate
+        </button>
+
+
+        <button
+            type="button"
+            class="btn save-btn"
+            id="saveReceipt"
+        >
+            Save Receipt
+        </button>
+
+
+        <button
+            type="button"
+            class="btn print-btn"
+            id="printReceipt"
+        >
+            Print Receipt
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         PROJECT FILES
+         ===================================================== -->
+
+    <div class="files-action">
+
+        <button
+            type="button"
+            class="btn files-btn"
+            id="openProjectFiles"
+        >
+            <i class="fa-solid fa-folder-open"></i>
+            Project Files
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <div class="footer">
+
+        <p>
+            Thank you for choosing our architectural services.
+        </p>
+
+        <p>
+            Professional Architectural Project Management
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     RECEIPT RECORDS
+     ========================================================= -->
+
+<div class="records-section">
+
+    <div class="records-header">
+
+        <div>
+
+            <h2>
+                Receipt Records
+            </h2>
+
+            <p>
+                Saved architectural billing statements
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn clear-records-btn"
+            id="clearRecords"
+        >
+            Clear All Records
+        </button>
+
+    </div>
+
+
+    <div class="records-table-container">
+
+        <table id="recordsTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Receipt No.</th>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Project</th>
+                    <th>Project ID</th>
+                    <th>Subtotal</th>
+                    <th>Discount</th>
+                    <th>VAT</th>
+                    <th>Total</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="recordsBody"></tbody>
+
+        </table>
+
+    </div>
+
+
+    <div
+        class="no-records"
+        id="noRecords"
+    >
+        No receipt records saved yet.
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ARCHGEN - Project Portal</title>
+
+    <link
+        rel="stylesheet"
+        href="project-portal.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="portal-app">
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                AG
+            </div>
+
+            <div class="brand-text">
+
+                <h1>
+                    ARCHGEN
+                </h1>
+
+                <p>
+                    ARCHITECTURAL PROJECT MANAGEMENT SYSTEM /
+                    PROJECT PORTAL
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="btn btn-light"
+                id="backButton"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-outline"
+                id="backReceipt"
+            >
+                <i class="fa-solid fa-receipt"></i>
+                Receipt
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-outline"
+                id="projectFiles"
+            >
+                <i class="fa-solid fa-folder-open"></i>
+                Project Files
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PROJECT IDENTIFICATION
+         ===================================================== -->
+
+    <section class="project-identification">
+
+        <div>
+
+            <span>
+                PROJECT ID
+            </span>
+
+            <strong id="portalProjectId">
+                —
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                PROJECT NAME
+            </span>
+
+            <strong id="portalProjectName">
+                —
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                CLIENT
+            </span>
+
+            <strong id="portalClient">
+                —
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                LOCATION
+            </span>
+
+            <strong id="portalLocation">
+                —
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <main class="portal-main">
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section class="dashboard-grid">
+
+            <article class="dashboard-card">
+
+                <span class="card-label">
+                    WORK PROGRESS
+                </span>
+
+                <strong id="projectProgress">
+                    0%
+                </strong>
+
+                <small>
+                    Checklist completion
+                </small>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="card-label">
+                    TOTAL EXPENSES
+                </span>
+
+                <strong id="projectBilling">
+                    ₱0.00
+                </strong>
+
+                <small>
+                    Saved project expense receipts
+                </small>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="card-label">
+                    ESTIMATED BUDGET
+                </span>
+
+                <strong id="projectBudget">
+                    ₱0.00
+                </strong>
+
+                <small>
+                    Planned project budget
+                </small>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="card-label">
+                    RECEIVABLES
+                </span>
+
+                <strong id="projectReceivables">
+                    ₱0.00
+                </strong>
+
+                <small>
+                    Amount received from client
+                </small>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span class="card-label">
+                    RECEIPTS
+                </span>
+
+                <strong id="receiptCount">
+                    0
+                </strong>
+
+                <small>
+                    Project expense records
+                </small>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             PROJECT CHECKLIST
+             ================================================= -->
+
+        <section class="panel checklist-panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PROJECT CONTROL
+                    </span>
+
+                    <h2>
+                        Project Checklist
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-dark"
+                    id="resetChecklist"
+                >
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div class="progress-header">
+
+                <span id="checklistProgressText">
+                    0 of 15 tasks completed
+                </span>
+
+                <strong id="checklistProgress">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    id="checklistProgressBar"
+                ></div>
+
+            </div>
+
+
+            <div
+                class="status-line"
+                id="checklistStatus"
+            >
+                Project work has not started.
+            </div>
+
+
+            <div
+                class="checklist-container"
+                id="checklistContainer"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROJECT INFORMATION
+             ================================================= -->
+
+        <section class="panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PROJECT INFORMATION
+                    </span>
+
+                    <h2>
+                        Project Information
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+
+                <div class="info-item">
+
+                    <span>
+                        Project ID
+                    </span>
+
+                    <strong id="infoProjectId">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>
+                        Project Name
+                    </span>
+
+                    <strong id="infoProjectName">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>
+                        Client
+                    </span>
+
+                    <strong id="infoClient">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong id="infoLocation">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <label for="infoStartDate">
+                        Start Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="infoStartDate"
+                    >
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <label for="infoCompletion">
+                        Target Completion Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="infoCompletion"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="info-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-dark"
+                    id="saveProjectDates"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Project Dates
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINANCIALS
+             ================================================= -->
+
+        <section class="panel financial-panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PROJECT FINANCIALS
+                    </span>
+
+                    <h2>
+                        Budget / Client Receivables
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="financial-form-grid">
+
+
+                <div class="field-card">
+
+                    <label for="totalBudget">
+                        Estimated Budget
+                    </label>
+
+                    <input
+                        type="number"
+                        id="totalBudget"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                    <small>
+                        Total planned project budget.
+                    </small>
+
+                </div>
+
+
+                <div class="field-card">
+
+                    <label for="receiveBudget">
+                        Receive Budget (Down Payment)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="receiveBudget"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                    <small>
+                        Expected or target down payment.
+                    </small>
+
+                </div>
+
+
+                <div class="field-card">
+
+                    <label for="downPayment">
+                        Down Payment
+                    </label>
+
+                    <input
+                        type="number"
+                        id="downPayment"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                    <small>
+                        Actual amount received as down payment.
+                    </small>
+
+                </div>
+
+
+                <div class="field-card">
+
+                    <label for="progressBilling">
+                        Progress Billing
+                    </label>
+
+                    <input
+                        type="number"
+                        id="progressBilling"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                    <small>
+                        Cumulative progress billing received.
+                    </small>
+
+                </div>
+
+
+                <div class="field-card">
+
+                    <label for="finalPayment">
+                        Final Payment
+                    </label>
+
+                    <input
+                        type="number"
+                        id="finalPayment"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                    >
+
+                    <small>
+                        Final payment received from client.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="financial-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-dark"
+                    id="saveProjectBudget"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Financials
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    id="resetFinancials"
+                >
+                    <i class="fa-solid fa-eraser"></i>
+                    Clear Financial Inputs
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ADDITIONAL PROJECT EXPENSES
+                 ================================================= -->
+
+            <div class="additional-expenses">
+
+                <div class="additional-expenses-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ADDITIONAL PROJECT EXPENSES
+                        </span>
+
+                        <h3>
+                            Other Project Expenses
+                        </h3>
+
+                        <p>
+                            Add any project expense that is not recorded through an expense receipt.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-dark"
+                        id="addAdditionalExpense"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Expense Record
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="additional-expense-form"
+                    id="additionalExpenseForm"
+                    hidden
+                >
+
+                    <div class="field-card">
+
+                        <label for="additionalExpenseName">
+                            Expense / Item
+                        </label>
+
+                        <input
+                            type="text"
+                            id="additionalExpenseName"
+                            maxlength="150"
+                            placeholder="e.g. Additional Printing"
+                        >
+
+                    </div>
+
+
+                    <div class="field-card">
+
+                        <label for="additionalExpenseDescription">
+                            Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="additionalExpenseDescription"
+                            maxlength="250"
+                            placeholder="Optional description"
+                        >
+
+                    </div>
+
+
+                    <div class="field-card">
+
+                        <label for="additionalExpenseAmount">
+                            Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="additionalExpenseAmount"
+                            min="0"
+                            step="0.01"
+                            placeholder="0.00"
+                        >
+
+                    </div>
+
+
+                    <div class="field-card">
+
+                        <label for="additionalExpenseDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="additionalExpenseDate"
+                        >
+
+                    </div>
+
+
+                    <div class="additional-expense-form-actions">
+
+                        <button
+                            type="button"
+                            class="btn btn-dark"
+                            id="saveAdditionalExpense"
+                        >
+                            <i class="fa-solid fa-check"></i>
+                            Add Record
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-outline-dark"
+                            id="cancelAdditionalExpense"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="additional-expense-empty"
+                    id="noAdditionalExpenses"
+                >
+                    No additional project expenses have been added.
+                </div>
+
+
+                <div
+                    class="table-wrap additional-expense-table-wrap"
+                    id="additionalExpenseTableWrap"
+                >
+
+                    <table class="additional-expense-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Expense / Item
+                                </th>
+
+                                <th>
+                                    Description
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="additionalExpensesBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="additional-expense-total">
+
+                    <span>
+                        Additional Project Expenses
+                    </span>
+
+                    <strong id="additionalExpensesTotal">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="financial-summary-grid">
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Estimated Budget
+                    </span>
+
+                    <strong id="budgetDisplay">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Receive Budget
+                    </span>
+
+                    <strong id="receiveBudgetDisplay">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Receivables
+                    </span>
+
+                    <strong id="receivablesDisplay">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Total Expenses
+                    </span>
+
+                    <strong id="billingDisplay">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Balance Due
+                    </span>
+
+                    <strong id="remainingBudget">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-block">
+
+                <div class="metric-line">
+
+                    <span>
+                        Client Receivable Progress
+                    </span>
+
+                    <strong id="receivableProgressText">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        id="receivableProgressBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-block">
+
+                <div class="metric-line">
+
+                    <span>
+                        Expense / Budget Utilization
+                    </span>
+
+                    <strong id="expenseBudgetProgressText">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        id="expenseBudgetProgressBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="financial-status"
+                id="completionResult"
+            >
+                Enter an estimated budget to view financial progress.
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WORKSPACE
+             ================================================= -->
+
+        <section class="panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        WORKSPACE
+                    </span>
+
+                    <h2>
+                        Architectural Workspace
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="workspace-grid">
+
+
+                <button
+                    type="button"
+                    class="workspace-card"
+                    id="openFilesCard"
+                >
+
+                    <i class="fa-solid fa-folder-tree"></i>
+
+                    <span>
+                        Project Files
+                    </span>
+
+                    <small>
+                        Documents, drawings and photos
+                    </small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="workspace-card"
+                    id="newReceiptCard"
+                >
+
+                    <i class="fa-solid fa-file-circle-plus"></i>
+
+                    <span>
+                        New Expense Receipt
+                    </span>
+
+                    <small>
+                        Record project expenses
+                    </small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="workspace-card"
+                    id="viewReceiptsCard"
+                >
+
+                    <i class="fa-solid fa-list"></i>
+
+                    <span>
+                        View Expenses
+                    </span>
+
+                    <small>
+                        Review saved project receipts
+                    </small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="workspace-card"
+                    id="printSummaryCard"
+                >
+
+                    <i class="fa-solid fa-print"></i>
+
+                    <span>
+                        Print Summary
+                    </span>
+
+                    <small>
+                        Print the project portal
+                    </small>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROJECT EXPENSES
+             ================================================= -->
+
+        <section
+            class="panel expense-panel"
+            id="expenseRecordsSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        EXPENSES
+                    </span>
+
+                    <h2>
+                        Project Expenses
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="empty-state"
+                id="noProjectReceipts"
+            >
+                No expense receipts have been saved for this project.
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table class="portal-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Receipt
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Client
+                            </th>
+
+                            <th>
+                                Project / Materials
+                            </th>
+
+                            <th>
+                                Subtotal
+                            </th>
+
+                            <th>
+                                VAT
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="portalReceiptsBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROJECT TIMELINE
+             ================================================= -->
+
+        <section class="panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PROJECT TIMELINE
+                    </span>
+
+                    <h2>
+                        Project Phases
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+
+                    <span>01</span>
+
+                    <div>
+
+                        <strong>
+                            Project Initialization
+                        </strong>
+
+                        <small>
+                            Brief, scope and feasibility
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <span>02</span>
+
+                    <div>
+
+                        <strong>
+                            Concept Development
+                        </strong>
+
+                        <small>
+                            Concept studies and direction
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <span>03</span>
+
+                    <div>
+
+                        <strong>
+                            Design Development
+                        </strong>
+
+                        <small>
+                            Detailed design coordination
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <span>04</span>
+
+                    <div>
+
+                        <strong>
+                            Construction Documentation
+                        </strong>
+
+                        <small>
+                            Working and approved drawings
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <span>05</span>
+
+                    <div>
+
+                        <strong>
+                            Construction
+                        </strong>
+
+                        <small>
+                            Site implementation and monitoring
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <span>06</span>
+
+                    <div>
+
+                        <strong>
+                            Project Completion
+                        </strong>
+
+                        <small>
+                            Inspection, punch list and handover
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <strong>
+            ARCHGEN
+        </strong>
+
+        <span>
+            Professional Architectural Project Management
+        </span>
+
+        <span id="fileCount">
+            0 project files
+        </span>
+
+    </footer>
+
+</div>
+
+
+<script src="project-portal.js"></script>
+
+</body>
+</html>

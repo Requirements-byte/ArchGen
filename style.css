@@ -1,0 +1,796 @@
+/* =========================================================
+   ARCHGEN DESIGN + CONSTRUCTION
+   ARCHITECTURAL RECEIPT CALCULATOR
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
+
+:root {
+    --black: #050505;
+    --dark: #111111;
+    --gray: #777777;
+    --light-gray: #d9d9d9;
+    --concrete: #eeeeee;
+    --white: #ffffff;
+    --border: #cfcfcf;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    color: var(--black);
+
+    background-color: #dedede;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.55),
+            rgba(255,255,255,.55)
+        ),
+        linear-gradient(
+            #cfcfcf 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            #cfcfcf 1px,
+            transparent 1px
+        );
+
+    background-size:
+        auto,
+        40px 40px,
+        40px 40px;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+.receipt-container {
+    position: relative;
+    max-width: 1050px;
+    margin: auto;
+    background: var(--white);
+    border: 2px solid var(--black);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+    overflow: hidden;
+}
+
+.receipt-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    border-top: 7px solid var(--black);
+    border-left: 7px solid var(--black);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.receipt-container::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 70px;
+    height: 70px;
+    border-right: 7px solid var(--black);
+    border-bottom: 7px solid var(--black);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* HEADER */
+
+.header {
+    position: relative;
+    width: 100%;
+    min-height: 125px;
+    padding: 22px 30px;
+    background: var(--black);
+    color: var(--white);
+    border-bottom: 4px solid var(--white);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 14px;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+    flex: 0 0 90px;
+    object-fit: contain;
+    background: var(--black);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
+    padding-left: 16px;
+    border-left: 2px solid var(--white);
+}
+
+.brand-text h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: 3px;
+}
+
+.brand-text p {
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #cfcfcf;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 30px;
+    right: 30px;
+    height: 1px;
+    background: #444;
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    bottom: 9px;
+    left: 30px;
+    right: 30px;
+    height: 1px;
+    background: #444;
+}
+
+/* PROJECT INFORMATION */
+
+.project-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 35px 40px 20px;
+    border: 1px solid var(--black);
+    background: var(--white);
+}
+
+.form-group {
+    min-width: 0;
+    padding: 15px;
+    border-right: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+}
+
+.form-group:nth-child(even) {
+    border-right: none;
+}
+
+.form-group:last-child {
+    border-right: none;
+}
+
+.form-group:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+/* Keep an odd final field visually intentional. */
+.form-group:last-child {
+    grid-column: 1 / -1;
+    border-right: none;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--black);
+    background: var(--white);
+    border: 1px solid #bbb;
+    border-radius: 0;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid var(--black);
+    background: #fafafa;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+/* PORTAL ACTION */
+
+.project-portal-action {
+    margin: 0 40px 20px;
+}
+
+.portal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--white);
+    background: var(--black);
+}
+
+.portal-btn:hover {
+    color: var(--black);
+    background: var(--white);
+}
+
+/* SECTION */
+
+.receipt-container > h2 {
+    position: relative;
+    margin: 0 40px;
+    padding: 10px 0 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--black);
+}
+
+.receipt-container > h2::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    vertical-align: middle;
+    border: 4px solid var(--black);
+    transform: rotate(45deg);
+}
+
+/* RECEIPT TABLE */
+
+#receiptTable {
+    width: calc(100% - 80px);
+    margin: 20px 40px 0;
+    border-collapse: collapse;
+    border: 2px solid var(--black);
+}
+
+#receiptTable th {
+    padding: 14px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-align: left;
+    text-transform: uppercase;
+    color: white;
+    background: var(--black);
+}
+
+#receiptTable td {
+    padding: 10px;
+    background: white;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+#receiptTable tr:nth-child(even) td {
+    background: #f5f5f5;
+}
+
+#receiptTable tr:hover td {
+    background: #e9e9e9;
+}
+
+#receiptTable td input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    background: transparent;
+}
+
+#receiptTable td input:focus {
+    background: white;
+    border: 2px solid black;
+}
+
+.amount {
+    padding-right: 15px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* BUTTONS */
+
+.btn {
+    padding: 11px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid var(--black);
+    border-radius: 0;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ADD */
+
+.add-btn {
+    margin: 15px 40px;
+    color: white;
+    background: black;
+}
+
+.add-btn:hover {
+    color: black;
+    background: white;
+}
+
+/* REMOVE */
+
+.remove-btn {
+    margin: 0;
+    padding: 7px 10px;
+    color: white;
+    background: #555;
+    border-color: #555;
+}
+
+.remove-btn:hover {
+    color: black;
+    background: white;
+    border-color: black;
+}
+
+/* SUMMARY */
+
+.summary {
+    width: 420px;
+    max-width: calc(100% - 80px);
+    margin: 30px 40px 0 auto;
+    border: 2px solid black;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-bottom: 1px solid #ccc;
+}
+
+.summary-row span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.summary-row strong {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.summary-row input {
+    width: 90px;
+    padding: 7px;
+    text-align: right;
+}
+
+.grand-total {
+    min-height: 75px;
+    padding: 15px;
+    color: white;
+    background: black;
+    border-bottom: none;
+}
+
+.grand-total span,
+.grand-total strong {
+    color: white;
+}
+
+.grand-total strong {
+    font-size: 23px;
+}
+
+/* BUTTON CONTAINER */
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 30px 40px 20px;
+}
+
+.calculate-btn,
+.save-btn {
+    color: white;
+    background: black;
+}
+
+.calculate-btn:hover,
+.save-btn:hover {
+    color: black;
+    background: white;
+}
+
+.print-btn {
+    color: black;
+    background: white;
+}
+
+.print-btn:hover {
+    color: white;
+    background: black;
+}
+
+/* FILE BUTTON */
+
+.files-action {
+    margin: 0 40px 35px;
+}
+
+.files-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    background: black;
+    text-decoration: none;
+}
+
+.files-btn:hover {
+    color: black;
+    background: white;
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 28px 40px;
+    text-align: center;
+    color: white;
+    background: black;
+    border-top: 5px solid white;
+}
+
+.footer p {
+    font-size: 10px;
+    line-height: 1.8;
+    letter-spacing: 1.5px;
+}
+
+.footer p:first-child {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* RECORDS */
+
+.records-section {
+    max-width: 1050px;
+    margin: 25px auto 40px;
+    border: 2px solid black;
+    background: white;
+}
+
+.records-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    background: black;
+}
+
+.records-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.records-header p {
+    margin-top: 5px;
+    font-size: 10px;
+    color: #ccc;
+    letter-spacing: 1px;
+}
+
+.clear-records-btn {
+    color: black;
+    background: white;
+    border-color: white;
+}
+
+.clear-records-btn:hover {
+    color: white;
+    background: black;
+}
+
+.records-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#recordsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#recordsTable th {
+    padding: 12px 10px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    color: white;
+    background: #333;
+}
+
+#recordsTable td {
+    padding: 10px;
+    font-size: 12px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    white-space: nowrap;
+}
+
+#recordsTable tr:nth-child(even) td {
+    background: #f5f5f5;
+}
+
+.record-total {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.record-view-btn,
+.record-delete-btn,
+.record-portal-btn {
+    padding: 6px 9px;
+    margin-right: 4px;
+    color: white;
+    background: black;
+    border: 2px solid black;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.record-delete-btn {
+    background: #555;
+    border-color: #555;
+}
+
+.record-view-btn:hover,
+.record-delete-btn:hover,
+.record-portal-btn:hover {
+    color: black;
+    background: white;
+    border-color: black;
+}
+
+.no-records {
+    padding: 25px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+/* MOBILE */
+
+@media (max-width:750px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .header {
+        padding: 20px 18px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+        flex-basis: 65px;
+    }
+
+    .brand-text {
+        padding-left: 10px;
+    }
+
+    .brand-text h1 {
+        font-size: 17px;
+        letter-spacing: 1.5px;
+    }
+
+    .brand-text p {
+        font-size: 7px;
+    }
+
+    .project-info {
+        grid-template-columns: 1fr;
+        margin: 25px 20px;
+    }
+
+    .form-group {
+        border-right: none !important;
+        border-bottom: 1px solid black !important;
+    }
+
+    .form-group:last-child {
+        border-bottom: none !important;
+    }
+
+    .project-portal-action {
+        margin-left: 20px;
+    }
+
+    .receipt-container > h2 {
+        margin: 0 20px;
+        font-size: 15px;
+    }
+
+    #receiptTable {
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .add-btn {
+        margin-left: 20px;
+    }
+
+    .summary {
+        width: auto;
+        max-width: calc(100% - 40px);
+        margin-right: 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        padding: 25px 20px 20px;
+    }
+
+    .button-container .btn,
+    .files-btn {
+        width: 100%;
+    }
+
+    .files-action {
+        margin: 0 20px 30px;
+    }
+
+    .records-section {
+        margin: 15px 0 30px;
+    }
+
+    .records-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .clear-records-btn {
+        width: 100%;
+    }
+}
+
+/* PRINT */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .receipt-container {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+    }
+
+    .receipt-container::before,
+    .receipt-container::after {
+        display: none;
+    }
+
+    .btn,
+    .button-container,
+    .files-action,
+    .project-portal-action,
+    .records-section {
+        display: none !important;
+    }
+
+    input {
+        padding: 0;
+        border: none !important;
+        background: transparent !important;
+    }
+
+    #receiptTable {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #receiptTable th {
+        color: black;
+        background: #eee;
+        border: 1px solid black;
+    }
+
+    #receiptTable td {
+        border: 1px solid #999;
+    }
+
+    .summary {
+        margin-right: 0;
+    }
+
+    .grand-total {
+        color: black;
+        background: white;
+        border: 2px solid black;
+    }
+
+    .grand-total span,
+    .grand-total strong {
+        color: black;
+    }
+
+    .footer {
+        color: black;
+        background: white;
+        border-top: 2px solid black;
+    }
+}
